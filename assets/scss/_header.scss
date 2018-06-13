@@ -1,0 +1,17 @@
+.header {
+  padding: 1rem;
+
+  text-align: center;
+
+  &__title {
+    font-size: 2rem;
+
+    @media screen and (min-width: 560px) {
+      font-size: 3rem;
+    }
+
+    @media screen and (min-width: 900px) {
+      font-size: 4rem;
+    }
+  }
+}

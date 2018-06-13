@@ -1,0 +1,11 @@
+.stack {
+  flex: 1;
+  overflow: hidden;
+
+  &__item {
+    display: inline-block;
+    position: relative;
+
+    user-select: none;
+  }
+}

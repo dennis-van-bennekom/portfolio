@@ -1,0 +1,5 @@
+.idea
+node_modules
+public/app.css
+public/app.js
+mix-manifest.json

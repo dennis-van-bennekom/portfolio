@@ -1,0 +1,22 @@
+.contact {
+  padding: 1rem;
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  &__link {
+    display: block;
+    padding: 0 0.5rem;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}

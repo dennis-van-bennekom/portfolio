@@ -5,14 +5,16 @@
   align-items: center;
   flex: 1;
 
-  &__item {
-    user-select: none;
+  .item {
+    width: 80%;
+    max-width: 30rem;
 
     cursor: grab;
-  }
 
-  .item {
     &__image {
+      display: block;
+      width: 100%;
+
       pointer-events: none;
     }
   }

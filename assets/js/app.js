@@ -1,8 +1,11 @@
 import Hammer from 'hammerjs';
 import verge from 'verge';
 
+// Track this so we can make the items slide accurately.
 let frameTime = 0;
 let lastTime = 0;
+
+const stack = document.querySelector('.stack');
 
 class Item {
     constructor(item) {
@@ -12,12 +15,13 @@ class Item {
         this.y = 0;
         this.velocityX = 0;
         this.velocityY = 0;
+        this.rotation = Math.random() * 8 - 4;
 
         this.mc = new Hammer(this.item);
-
         this.mc.add(new Hammer.Pan({direction: Hammer.DIRECTION_ALL, threshold: 0}));
-
         this.mc.on('pan', (e) => this.pan(e));
+
+        this.item.style.transform = `rotate(${this.rotation}deg)`;
     }
 
     pan(e) {
@@ -27,6 +31,12 @@ class Item {
             this.velocityX = 0;
             this.velocityY = 0;
 
+            items.forEach((item) => {
+                item.item.style.zIndex = '0';
+            });
+
+            this.item.style.zIndex = '1';
+
             const transformStyle = this.item.style.transform;
 
             if (transformStyle) {
@@ -34,7 +44,7 @@ class Item {
             }
         }
 
-        this.item.style.transform = `translate(${e.deltaX + this.x}px, ${e.deltaY + this.y}px)`;
+        this.item.style.transform = `translate(${e.deltaX + this.x}px, ${e.deltaY + this.y}px) rotate(${this.rotation}deg)`;
 
         if (e.isFinal) {
             this.velocityX = e.velocityX * frameTime;
@@ -64,16 +74,20 @@ class Item {
         if (this.velocityX !== 0 || this.velocityY !== 0) {
             [this.x, this.y] = getTranslate(this.item);
 
-            this.item.style.transform = `translate(${this.velocityX + this.x}px, ${this.velocityY + this.y}px)`;
+            this.item.style.transform = `translate(${this.velocityX + this.x}px, ${this.velocityY + this.y}px) rotate(${this.rotation}deg)`;
         }
 
         if(!verge.inViewport(this.item)) {
-            console.log('ey');
             this.velocityX = 0;
             this.velocityY = 0;
             this.x = 0;
             this.y = 0;
-            this.item.style.transform = '';
+            this.rotation = Math.random() * 10 - 5;
+            this.item.style.zIndex = '0';
+            this.item.style.transform = `rotate(${this.rotation}deg)`;
+
+            // Move item to the bottom.
+            stack.insertBefore(this.item, stack.firstChild);
         }
     }
 }
@@ -83,10 +97,10 @@ const items = [...document.querySelectorAll('.stack__item')].map((item) => {
 });
 
 function update(now) {
-    items.forEach((item) => item.update());
-
     frameTime = now - lastTime;
     lastTime = now;
+
+    items.forEach((item) => item.update());
 
     window.requestAnimationFrame(update);
 }

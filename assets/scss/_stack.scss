@@ -6,8 +6,11 @@
   flex: 1;
 
   .item {
+    position: absolute;
     width: 80%;
     max-width: 30rem;
+
+    box-shadow: 1px 1px 14px 0 rgba(0,0,0,0.3);
 
     cursor: grab;
 
@@ -16,6 +19,40 @@
       width: 100%;
 
       pointer-events: none;
+    }
+
+    &__buttons {
+      display: flex;
+      background: #000;
+    }
+
+    &__button {
+      display: block;
+      flex: 1;
+      padding: 0.8rem 1rem;
+
+      text-align: center;
+
+      color: #fff;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--first {
+      background: #fff;
+    }
+
+    &__info {
+      padding: 1rem;
+    }
+
+    &__footer {
+      padding: 1rem;
+
+      background: #000;
+      color: #fff;
     }
   }
 }

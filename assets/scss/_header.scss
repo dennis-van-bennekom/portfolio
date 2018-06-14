@@ -1,9 +1,11 @@
 .header {
-  padding: 1rem;
+  padding: 2rem 1rem;
 
   text-align: center;
 
   &__title {
+    margin: 0;
+
     font-size: 2rem;
 
     @media screen and (min-width: 560px) {

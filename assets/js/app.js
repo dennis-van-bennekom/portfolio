@@ -19,9 +19,6 @@ items.forEach((item) => {
 
         if (transformStyle) {
             [itemX, itemY] = getTranslate(selectedItem);
-        } else {
-            itemX = selectedItem.offsetLeft;
-            itemY = selectedItem.offsetTop;
         }
     });
 

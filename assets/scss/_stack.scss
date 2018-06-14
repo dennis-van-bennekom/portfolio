@@ -1,11 +1,19 @@
 .stack {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  overflow: hidden;
 
   &__item {
-    display: inline-block;
-    position: relative;
-
     user-select: none;
+
+    cursor: grab;
+  }
+
+  .item {
+    &__image {
+      pointer-events: none;
+    }
   }
 }

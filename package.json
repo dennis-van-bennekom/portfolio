@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "hammerjs": "^2.0.8",
+    "randomcolor": "^0.5.3",
     "verge": "^1.10.2"
   }
 }
